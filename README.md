@@ -38,5 +38,3 @@ $ php qt serve
 ```
 
 A built-in server will launch (typically at `http://localhost:8000/`)
-
-###
