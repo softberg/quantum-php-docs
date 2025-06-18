@@ -21,5 +21,5 @@ $ php -S localhost:8080
 
 ## Learn More
 
-- [Website](http://quantumphp.io/)
+- [Website](https://quantum.softberg.org)
 - [Blog](http://blog.softberg.org/category/quantum-php-framework/)
