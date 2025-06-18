@@ -1,9 +1,5 @@
----
-description: This guide walks you through installing and running a new Quantum PHP project.
-icon: hand-wave
----
-
 # Installation
+This guide walks you through installing and running a new Quantum PHP project.
 
 ### 🔧 Requirmens
 
