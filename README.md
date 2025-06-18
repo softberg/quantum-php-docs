@@ -5,7 +5,7 @@ icon: hand-wave
 
 # Installation
 
-### Requirmens
+### 🔧 Requirmens
 
 Make sure your environment includes:
 
