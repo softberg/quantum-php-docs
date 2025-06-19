@@ -2,4 +2,4 @@
 
 ## v3.0
 
-* [Installation](README.md)
+* [Installation](v3.0/installation.md)
