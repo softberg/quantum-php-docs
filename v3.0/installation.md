@@ -1,25 +1,45 @@
-## About Quantum
+# Installation
 
-Very fast and extremely simple PHP MVC framework of the next generation with a modular structure that allows you to create any kind of projects.
+This guide walks you through installing and running a new Quantum PHP project.
 
-## Installation
+### 🔧 Requirements
 
-#### 1. Create project
-```bash
-composer create-project quantum/project my-project
-```
+Make sure your environment includes:
 
-#### 2. Step in to your project directory
-```bash
-$ cd my-project/public
-```
+* **PHP 7.4+**&#x20;
+* **PHP extensions**:
+  * PDO
+  * JSON
+  * OpenSSL
+  * bcmath, curl, fileinfo, simplexml (as required by framework)&#x20;
+* **Composer** installed and accessible globally
 
-#### 3. Run built-in PHP server
-```bash
-$ php -S localhost:8080
-```
+### 🚀 Installation Steps
 
-## Learn More
+1.  **Create a new project**
 
-- [Website](https://quantum.softberg.org)
-- [Blog](http://blog.softberg.org/category/quantum-php-framework/)
+    ```bash
+    composer create-project quantum/project my-project
+    ```
+
+
+2.  **Navigate into the project directory**\
+
+
+    ```
+    cd my-project
+    ```
+
+
+3.  **Start the development server**
+
+    ```bash
+    php qt serve
+    ```
+
+    \
+    A built-in server will launch (typically at `http://localhost:8000/`)
+
+### ✅ Verification
+
+You should now see the Quantum default welcome page. That confirms your installation was successful!
