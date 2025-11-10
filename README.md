@@ -27,6 +27,7 @@ Quantum is a modern MVC/HMVC framework that provides the core tools needed to bu
 * 📁 File uploads, storage and file system abstraction
 * 📧 Mailer integration
 * 🗃️ Multiple database adapter support (Idiorm, SleekDB)
+* ⚡ Flexible caching system with multiple drivers (File, Database, Redis, Memcache)
 * 🧪 Simple and extendable testing setup
 * 🌐 Localization and translation support
 * 🧰 CLI tools for rapid scaffolding and dev tasks
