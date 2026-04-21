@@ -36,20 +36,20 @@ Quantum is a modern MVC/HMVC framework that provides the core tools needed to bu
 
 ### Features
 
-* ✅ MVC & HMVC architecture
-* ⚙️ Powerful routing with support for RESTful routes
-* 🔐 Built-in authentication & CSRF protection
-* 🧩 Modular structure with service containers
-* 📦 Environment-based configuration system
-* 📄 Templating system with escaping and layout support
-* 📁 File uploads, storage and file system abstraction
-* 📧 Mailer integration
-* 🗃️ Multiple database adapter support (Idiorm, SleekDB)
-* ⚡ Flexible caching system with multiple drivers (File, Database, Redis, Memcache)
-* 🧪 Simple and extendable testing setup
-* 🌐 Localization and translation support
-* 🧰 CLI tools for rapid scaffolding and dev tasks
-* 🔑 JWT support for APIs
+* MVC & HMVC architecture
+* Powerful routing with support for RESTful routes
+* Built-in authentication & CSRF protection
+* Modular structure with service containers
+* Environment-based configuration system
+* Templating system with escaping and layout support
+* File uploads, storage and file system abstraction
+* Mailer integration
+* Multiple database adapter support (Idiorm, SleekDB)
+* Flexible caching system with multiple drivers (File, Database, Redis, Memcache)
+* Simple and extendable testing setup
+* Localization and translation support
+* CLI tools for rapid scaffolding and dev tasks
+* JWT support for APIs
 
 ***
 

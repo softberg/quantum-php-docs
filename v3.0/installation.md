@@ -37,7 +37,7 @@ Make sure your environment includes:
     php qt serve
     ```
 
-    \
+
     A built-in server will launch (typically at `http://localhost:8000/`)
 
 ### Verification
