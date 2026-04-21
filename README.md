@@ -28,13 +28,13 @@ This path is designed especially for beginners who want both a fast start and a 
 
 ***
 
-### 🚀 Overview
+### Overview
 
 Quantum is a modern MVC/HMVC framework that provides the core tools needed to build scalable web applications. Whether you're building APIs, websites, or admin panels, Quantum gives you full control without unnecessary complexity.
 
 ***
 
-### ✨ Features
+### Features
 
 * ✅ MVC & HMVC architecture
 * ⚙️ Powerful routing with support for RESTful routes
@@ -53,7 +53,7 @@ Quantum is a modern MVC/HMVC framework that provides the core tools needed to bu
 
 ***
 
-### 🧱 Modular by Design
+### Modular by Design
 
 Modules are fully isolated packages within the project (`/modules`) that can contain their own controllers, models, views, and routes. Great for building reusable features like blog, shop, dashboard, and other feature-focused application areas.
 
@@ -81,12 +81,12 @@ That means the early priority is to make sure new developers can:
 
 ***
 
-### 🤝 Contributing
+### Contributing
 
 Contributions are welcome. If you have suggestions for improving the framework or its documentation, feel free to open an issue or submit a pull request.
 
 ***
 
-### 📄 License
+### License
 
 Quantum PHP Framework is open-source and licensed under the [MIT license](https://raw.githubusercontent.com/softberg/quantum-php-core/refs/heads/master/LICENSE).

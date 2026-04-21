@@ -2,7 +2,7 @@
 
 This guide walks you through installing and running a new Quantum PHP project.
 
-### 🔧 Requirements
+### Requirements
 
 Make sure your environment includes:
 
@@ -14,7 +14,7 @@ Make sure your environment includes:
   * bcmath, curl, fileinfo, simplexml (as required by framework)&#x20;
 * **Composer** installed and accessible globally
 
-### 🚀 Installation Steps
+### Installation Steps
 
 1.  **Create a new project**
 
@@ -40,6 +40,6 @@ Make sure your environment includes:
     \
     A built-in server will launch (typically at `http://localhost:8000/`)
 
-### ✅ Verification
+### Verification
 
 You should now see the Quantum default welcome page. That confirms your installation was successful!
