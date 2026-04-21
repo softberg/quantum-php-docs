@@ -6,7 +6,7 @@ This guide walks you through installing and running a new Quantum PHP project.
 
 Make sure your environment includes:
 
-* **PHP 7.4+**&#x20;
+* **PHP 7.4+**;
 * **PHP extensions**:
   * PDO
   * JSON
