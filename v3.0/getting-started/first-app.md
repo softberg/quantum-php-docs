@@ -97,12 +97,12 @@ This is a cleaner pattern than building HTML directly inside the controller.
 
 For APIs or asynchronous requests, the controller may return JSON instead.
 
-Conceptually, that looks like:
+A Quantum-style response flow can look like this:
 
 ```php
 public function profile()
 {
-    return json_encode([
+    response()->json([
         'name' => 'Arman',
         'framework' => 'Quantum PHP Framework'
     ]);
