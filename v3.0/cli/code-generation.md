@@ -18,7 +18,7 @@ They reduce uncertainty by making it easier to:
 - avoid boilerplate mistakes
 - move faster when building new features
 
-## A simple mental model
+## Core idea
 
 Think of code generation as scaffolding.
 
@@ -51,7 +51,7 @@ Generated structure helps teams keep:
 
 That is especially important when multiple modules are involved.
 
-## When beginners should use generation commands
+## When to use generation commands
 
 You should reach for generation commands when:
 
@@ -60,7 +60,7 @@ You should reach for generation commands when:
 - learning the framework's preferred structure
 - trying to avoid repetitive setup work
 
-For a beginner, the biggest benefit is not speed alone. It is confidence.
+The biggest benefit is not speed alone. It is confidence.
 
 If the framework generates the structure, you know you are starting from a valid baseline.
 
@@ -92,7 +92,7 @@ But you still need to understand:
 
 So generation should support learning, not replace it.
 
-## A practical beginner rule
+## A practical rule
 
 Use generation commands when they help you stay aligned with framework conventions.
 

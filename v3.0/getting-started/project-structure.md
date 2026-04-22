@@ -2,7 +2,7 @@
 
 One of the easiest ways to become comfortable with the Quantum PHP Framework is to understand how a real project is organized.
 
-This page is based on the current `quantum/project` application skeleton, not a generic framework guess. The goal is to help beginners build a practical mental model of the folders they will actually see in a new project.
+This page is based on the current `quantum/project` application skeleton, not a generic framework guess. The goal is to help readers build a practical understanding of the folders they will actually see in a new project.
 
 ## A high-level view
 
@@ -110,7 +110,7 @@ A few root-level files are worth recognizing early:
 - `phpunit.xml` for testing configuration
 - `LICENSE`, `.gitignore`, and CI-related files for project maintenance
 
-## A useful beginner mental model
+## A useful way to think about it
 
 If you are new to the framework, this simplified model is enough to get started:
 

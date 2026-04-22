@@ -24,7 +24,7 @@ If you are new to the framework, the best path is:
 4. [Quickstart](v3.0/getting-started/quickstart.md)
 5. [Project Structure](v3.0/getting-started/project-structure.md)
 
-This path is designed especially for beginners who want both a fast start and a clearer mental model of the framework.
+This path is designed for developers who want both a fast start and a clearer understanding of the framework.
 
 ***
 
@@ -69,7 +69,7 @@ If you want a deeper conceptual explanation of the framework itself, continue wi
 
 ## Documentation focus
 
-The current documentation effort is focused on building a strong beginner-friendly foundation first.
+The current documentation effort is focused on building a strong foundation first.
 
 That means the early priority is to make sure new developers can:
 

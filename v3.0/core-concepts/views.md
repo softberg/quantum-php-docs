@@ -4,7 +4,7 @@ Views are the part of the Quantum PHP Framework responsible for presenting outpu
 
 In a typical web request, the controller gathers data, then hands that data to the view layer to render the final HTML.
 
-## The beginner mental model
+## Core idea
 
 A view is where presentation happens.
 
@@ -164,9 +164,9 @@ The project skeleton currently defines:
 
 This suggests Quantum is designed to support more than one rendering mode, even if the default project uses the HTML renderer first.
 
-## A practical mental model
+## Practical view
 
-For beginners, this is the most useful way to think about views in Quantum:
+A useful way to think about views in Quantum is:
 
 - controllers prepare the data
 - views render the presentation

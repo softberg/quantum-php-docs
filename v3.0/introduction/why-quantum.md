@@ -8,7 +8,7 @@ Quantum PHP Framework is built around a few practical ideas that make it attract
 
 Some frameworks are powerful, but they can feel overwhelming when you are still learning how the pieces fit together.
 
-Quantum PHP Framework aims to reduce that friction. The goal is to make common application concepts understandable without burying beginners under too much abstraction too early.
+Quantum PHP Framework aims to reduce that friction. The goal is to make common application concepts understandable without burying developers under too much abstraction too early.
 
 That makes it easier to:
 
@@ -33,13 +33,13 @@ That means you can use it for day-to-day application work without needing to ass
 
 ## 4. It works for both learning and building
 
-A good beginner experience does not have to mean a toy framework.
+A good onboarding experience does not have to mean a toy framework.
 
 Quantum PHP Framework tries to balance accessibility with enough power to support real websites, APIs, dashboards, internal tools, and modular business applications.
 
 This makes it useful in two common situations:
 
-- you are learning framework-based PHP development and want a clearer mental model
+- you are learning framework-based PHP development and want a clearer understanding of how the pieces fit together
 - you are building a real application and want a framework that stays organized as the project evolves
 
 ## 5. It focuses on clarity over unnecessary complexity
@@ -52,7 +52,7 @@ That does not mean every concept is trivial. It means the framework tries to kee
 
 Quantum PHP Framework may be a strong choice if you want:
 
-- a beginner-friendly path into full-stack PHP framework development
+- an accessible path into full-stack PHP framework development
 - a modular project structure
 - a framework that can handle both websites and APIs
 - a development experience that feels practical and readable

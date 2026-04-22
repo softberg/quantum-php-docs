@@ -6,7 +6,7 @@ If the web layer is how users interact with your app, the CLI is how you interac
 
 ## Why the CLI matters
 
-For beginners, the CLI often looks optional.
+The CLI often looks optional at first.
 In practice, it becomes part of the normal workflow very quickly.
 
 You use it to:
@@ -19,7 +19,7 @@ You use it to:
 
 That means the CLI is not only a convenience. It is part of the developer experience.
 
-## A simple mental model
+## Core idea
 
 Think of the Quantum CLI as your project assistant.
 
@@ -32,7 +32,7 @@ Instead of manually wiring every repetitive piece by hand, you can ask the frame
 
 This keeps your workflow consistent and reduces setup mistakes.
 
-## Common beginner use cases
+## Common use cases
 
 The first commands most developers care about are usually:
 
@@ -67,7 +67,7 @@ A route-listing command helps you understand:
 
 That is especially helpful when debugging or onboarding into an older project.
 
-## Why beginners should learn the CLI early
+## Why it helps to learn the CLI early
 
 There are two big reasons.
 
@@ -94,7 +94,7 @@ The CLI section of the docs should help you answer questions like:
 - how do I run the app locally?
 - how do I inspect routes?
 - how do I generate modules and framework files?
-- which commands should beginners learn first?
+- which commands should you learn first?
 
 This page is the entry point for that part of the documentation.
 
@@ -105,4 +105,4 @@ After this page, the best next step is usually:
 1. [Development Server](development-server.md)
 2. [Code Generation](code-generation.md)
 
-Those two topics cover the most common beginner workflow first.
+Those two topics cover the most common early workflow first.

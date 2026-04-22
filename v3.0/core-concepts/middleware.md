@@ -4,7 +4,7 @@ Middleware is the part of the Quantum PHP Framework that runs between route matc
 
 It gives you a way to inspect, block, validate, or redirect a request before the main handler continues.
 
-## The beginner mental model
+## Core idea
 
 A simple way to think about middleware is:
 
@@ -154,7 +154,7 @@ For example:
 - unauthorized requests return a JSON error response
 - validation failures return structured error payloads
 
-This is a good beginner lesson: middleware behavior should fit the kind of application surface you are building.
+This is an important lesson: middleware behavior should fit the kind of application surface you are building.
 
 ## Complete middleware class example
 
@@ -230,9 +230,9 @@ From the upstream templates, common outcomes include:
 
 So middleware is not only about validation. It is also a control point for access and response flow.
 
-## A practical mental model
+## Practical view
 
-For beginners, the most useful way to think about middleware in Quantum is:
+A useful way to think about middleware in Quantum is:
 
 - routes decide where the request wants to go
 - middleware decides whether the request is allowed to continue

@@ -26,7 +26,7 @@ Quantum PHP Framework is especially suitable for developers who want:
 - the flexibility to build websites, dashboards, APIs, and custom applications
 - a modular architecture that can scale with the project
 
-It is a strong fit for beginners who want to learn a full framework in a more approachable way, while still giving experienced developers enough room to build serious applications.
+It is a strong fit for developers who want to learn a full framework in a more approachable way, while still giving experienced developers enough room to build serious applications.
 
 ## What kind of framework is it?
 

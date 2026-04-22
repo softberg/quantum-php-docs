@@ -4,7 +4,7 @@ Controllers are the part of the Quantum PHP Framework that handle a matched requ
 
 In practice, a route usually points to a controller class and an action method. When the request matches, Quantum creates the controller and runs that action.
 
-## The beginner mental model
+## Core idea
 
 A controller sits between the route and the response.
 
@@ -166,7 +166,7 @@ This is another sign that Quantum organizes request handling through modules rat
 
 ## Controllers should stay focused
 
-A good beginner habit is to keep controllers focused on coordination.
+A good habit is to keep controllers focused on coordination.
 
 In other words, controllers should usually:
 
@@ -205,9 +205,9 @@ Usually:
 
 Both styles follow the same routing and dispatch system.
 
-## A practical mental model
+## Practical view
 
-For beginners, the simplest useful model is:
+The simplest useful way to think about it is:
 
 - routes decide *which controller action runs*
 - controllers decide *what the application does for that request*

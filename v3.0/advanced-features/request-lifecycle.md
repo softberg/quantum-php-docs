@@ -6,14 +6,14 @@ This page explains what happens from the moment a request enters the application
 
 ## Why this matters
 
-Beginners often learn routing, controllers, and views as separate topics.
+People often learn routing, controllers, and views as separate topics.
 That helps at first, but real confidence comes from understanding how those parts connect.
 
 The request lifecycle is that connection.
 
 ## High-level flow
 
-A simple mental model looks like this:
+A simple view of the flow looks like this:
 
 1. a request enters the application
 2. Quantum boots the required framework pieces
@@ -77,7 +77,7 @@ Middleware can:
 - validate inputs
 - block unauthorized access
 
-This is why middleware belongs in the core mental model of the framework.
+This is why middleware belongs in the core flow of the framework.
 
 A request does not always go directly from route to controller.
 Sometimes middleware stops it first.
@@ -123,7 +123,7 @@ That might mean:
 
 ## Putting the lifecycle together
 
-A practical beginner summary looks like this:
+A practical summary looks like this:
 
 - the framework boots
 - the router finds a route
@@ -148,7 +148,7 @@ A likely flow is:
 
 That is the request lifecycle in action.
 
-## Where beginners get confused
+## Where people often get confused
 
 A few mistakes are common.
 
@@ -156,7 +156,7 @@ A few mistakes are common.
 Routes describe the destination. They do not do all the work themselves.
 
 ### Forgetting middleware in the middle
-Many beginners mentally jump straight from route to controller. In real apps, middleware often sits in between.
+Many people jump straight from route to controller. In real apps, middleware often sits in between.
 
 ### Treating views as independent from controllers
 Views are usually part of the response chosen by the controller, not a separate routing destination.

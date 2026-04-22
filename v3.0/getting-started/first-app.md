@@ -26,7 +26,7 @@ That gives you the minimum working model for building real features.
 
 ## The basic request flow
 
-A beginner-friendly way to think about the framework is:
+A simple way to think about the framework is:
 
 1. the browser sends a request
 2. Quantum matches the request against your routes
@@ -114,7 +114,7 @@ The exact response style depends on the app structure and response helpers you u
 - web routes often return views
 - API-style routes often return JSON
 
-## A practical beginner mental model
+## A practical way to think about it
 
 If you forget the details, remember this:
 
@@ -126,7 +126,7 @@ If you forget the details, remember this:
 
 That is enough to start reading the rest of the docs without feeling lost.
 
-## What beginners usually misunderstand
+## What people usually misunderstand
 
 A few common points are worth clearing up early.
 

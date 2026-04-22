@@ -50,11 +50,11 @@ The goal is simply to confirm three things:
 
 Once the project is running, the next step is understanding where the main parts of the application live.
 
-Continue with [Project Structure](project-structure.md) to get a beginner-friendly overview of how a Quantum PHP Framework project is organized.
+Continue with [Project Structure](project-structure.md) to get a clear overview of how a Quantum PHP Framework project is organized.
 
 ## 6. Suggested next steps
 
-A good beginner path after this page is:
+A good next path after this page is:
 
 1. [Project Structure](project-structure.md)
 2. Routing

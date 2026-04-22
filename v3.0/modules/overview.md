@@ -4,7 +4,7 @@ Modules are one of the core organizational ideas in the Quantum PHP Framework.
 
 Instead of placing everything in one flat application structure, Quantum is designed so that related routes, controllers, views, services, and configuration can live together inside a module.
 
-## The beginner mental model
+## Core idea
 
 A module is a self-contained feature area.
 
@@ -124,7 +124,7 @@ This command uses built-in templates such as:
 - `DefaultApi`
 - other richer templates depending on use case
 
-So beginners should understand the difference between:
+So it helps to understand the difference between:
 
 - an empty or lightly populated fresh project
 - a real modular application after modules are generated and enabled
@@ -158,9 +158,9 @@ Modules are especially useful when:
 - you want clearer separation between application areas
 - the application is growing and one shared code area is no longer enough
 
-## A practical mental model
+## Practical view
 
-For beginners, the best short way to think about Quantum modules is:
+A good short way to think about Quantum modules is:
 
 - a module groups related feature code together
 - routes often start from modules

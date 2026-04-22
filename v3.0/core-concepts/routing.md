@@ -4,7 +4,7 @@ Routing is the part of the Quantum PHP Framework that decides which code should 
 
 When a request reaches your application, Quantum matches the request method and URL against the registered routes, then dispatches the matching controller action or closure.
 
-## The beginner mental model
+## Core idea
 
 A route answers three basic questions:
 
@@ -186,9 +186,9 @@ It can also filter by module.
 
 This is helpful when you want to verify what the application has actually registered.
 
-## A practical mental model
+## Practical view
 
-For beginners, this is the most useful way to think about Quantum routing:
+A useful way to think about Quantum routing is:
 
 - each module defines its own routes
 - each route maps a method and URL pattern to a handler

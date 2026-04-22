@@ -31,9 +31,9 @@ It confirms several pieces of your environment at once:
 
 That makes it one of the fastest health checks for a new project.
 
-## A practical beginner workflow
+## A practical workflow
 
-A normal beginner workflow looks like this:
+A normal workflow looks like this:
 
 1. install the project
 2. move into the project directory
@@ -55,11 +55,11 @@ Use the development server during normal local development, especially when you 
 
 It is the fastest feedback loop for day-to-day work.
 
-## Why this is beginner-friendly
+## Why this is a good starting point
 
 The built-in development command removes a lot of early friction.
 
-Instead of making a beginner configure a full production-style stack immediately, it gives a simple entry point:
+Instead of forcing a full production-style stack immediately, it gives a simple entry point:
 
 - install
 - serve
@@ -68,7 +68,7 @@ Instead of making a beginner configure a full production-style stack immediately
 
 That is a much smoother onboarding path.
 
-## Common beginner mistakes
+## Common mistakes
 
 ### Running the command outside the project directory
 If you are not inside the correct project folder, the command may fail or behave unexpectedly.
