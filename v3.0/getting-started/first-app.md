@@ -78,18 +78,18 @@ This is enough for a first example because it shows the connection between route
 
 ## Step 3: return a view
 
-In a normal web page flow, the controller often returns a rendered view instead of plain text.
+In a normal web page flow, the controller often prepares HTML through the response and view layer instead of returning plain text.
 
-Conceptually, that looks like this:
+A Quantum-style controller can look like this:
 
 ```php
-public function hello()
+public function hello(Response $response, ViewFactory $view)
 {
-    return View::render('home/hello');
+    $response->html($view->render('home/hello'));
 }
 ```
 
-That means the controller delegates the HTML rendering to the view layer.
+That means the controller delegates HTML rendering to the view layer and sends it through the response object.
 
 This is a cleaner pattern than building HTML directly inside the controller.
 
@@ -103,7 +103,7 @@ A Quantum-style response flow can look like this:
 public function profile()
 {
     response()->json([
-        'name' => 'Arman',
+        'name' => 'John Doe',
         'framework' => 'Quantum PHP Framework'
     ]);
 }

@@ -29,7 +29,7 @@ From the upstream routing code, Quantum dispatches controller routes by:
 1. reading the controller class and action from the matched route
 2. instantiating the controller
 3. verifying the action exists
-4. autowiring action parameters through the DI container
+4. autowiring action parameters through Quantum's DI system
 5. calling the action
 
 This means controller actions can receive useful dependencies directly.
@@ -131,7 +131,7 @@ In practical terms, you will often see action parameters such as:
 
 - `Response $response`
 - `ViewFactory $view`
-- request-related values resolved from the route or container
+- request-related values resolved from the route or DI system
 
 This keeps controllers cleaner and more focused.
 

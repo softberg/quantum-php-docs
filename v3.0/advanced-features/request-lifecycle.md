@@ -32,7 +32,7 @@ Every HTTP request starts from the public entry point of the app.
 At this stage, Quantum needs to:
 
 - load configuration
-- bootstrap the container and shared services
+- bootstrap the framework services needed for the request
 - prepare request and response objects
 - initialize the routing flow
 
