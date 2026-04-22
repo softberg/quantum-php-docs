@@ -158,7 +158,9 @@ This is a good beginner lesson: middleware behavior should fit the kind of appli
 
 ## Complete middleware class example
 
-A middleware doc should not stop at the method signature. Here is a full example of the kind of class beginners need to see.
+A middleware doc should not stop at the method signature. It should also show a full class shape.
+
+A safe beginner example, based on the same style as the upstream module template middlewares such as `Auth`, `Editor`, `PostOwner`, and `CommentOwner`, looks like this conceptually:
 
 ```php
 <?php
@@ -166,34 +168,32 @@ A middleware doc should not stop at the method signature. Here is a full example
 namespace Modules\Blog\Middlewares;
 
 use Closure;
-use Quantum\Http\Request;
-use Quantum\Http\Response;
-use Quantum\Middlewares\QtMiddleware;
+use Qt\Http\Request;
+use Qt\Http\Response;
+use Qt\Middlewares\QtMiddleware;
 
 class Auth extends QtMiddleware
 {
     public function apply(Request $request, Response $response, Closure $next)
     {
-        if (! session()->has('user')) {
-            return redirect('/signin');
-        }
+        // If the user is not authenticated, stop or redirect.
+        // Otherwise continue the middleware pipeline.
 
         return $next($request, $response);
     }
 }
 ```
 
-What this example does:
+This example is intentionally showing the full class structure, not claiming to be a copy-paste exact implementation from the upstream templates.
 
-- checks whether a user session exists
-- redirects guests to `/signin`
-- allows the request to continue only for authenticated users
+What it is meant to teach:
 
-This is the most common beginner middleware shape:
+- middleware classes live in a module `Middlewares` namespace
+- they extend `QtMiddleware`
+- they implement `apply(Request $request, Response $response, Closure $next)`
+- they either stop the request or call `$next(...)`
 
-- inspect the request or session
-- stop the request if a rule fails
-- otherwise call `$next(...)`
+For real project code, use the actual generated or template middleware in your module as the starting point, especially for `Auth`, `Editor`, `PostOwner`, or `CommentOwner` style behavior.
 
 ## Base middleware classes
 
