@@ -25,3 +25,8 @@
 
 ### Advanced Features
 * [Request Lifecycle](v3.0/advanced-features/request-lifecycle.md)
+
+### CLI
+* [CLI Overview](v3.0/cli/overview.md)
+* [Development Server](v3.0/cli/development-server.md)
+* [Code Generation](v3.0/cli/code-generation.md)
