@@ -158,42 +158,44 @@ This is a good beginner lesson: middleware behavior should fit the kind of appli
 
 ## Complete middleware class example
 
-A middleware doc should not stop at the method signature. It should also show a full class shape.
+A middleware doc should not stop at the method signature. It should also show a full class example grounded in the real upstream templates.
 
-A safe beginner example, based on the same style as the upstream module template middlewares such as `Auth`, `Editor`, `PostOwner`, and `CommentOwner`, looks like this conceptually:
+Here is the actual structure used by the upstream `Auth` middleware template:
 
 ```php
 <?php
 
-namespace Modules\Blog\Middlewares;
+namespace {{MODULE_NAMESPACE}}\Middlewares;
 
+use Quantum\Middleware\QtMiddleware;
+use Quantum\Http\Response;
+use Quantum\Http\Request;
 use Closure;
-use Qt\Http\Request;
-use Qt\Http\Response;
-use Qt\Middlewares\QtMiddleware;
 
 class Auth extends QtMiddleware
 {
     public function apply(Request $request, Response $response, Closure $next)
     {
-        // If the user is not authenticated, stop or redirect.
-        // Otherwise continue the middleware pipeline.
+        if (!auth()->check()) {
+            redirect(base_url(true) . '/' . current_lang() . '/signin');
+        }
 
         return $next($request, $response);
     }
 }
 ```
 
-This example is intentionally showing the full class structure, not claiming to be a copy-paste exact implementation from the upstream templates.
+What this real template example shows:
 
-What it is meant to teach:
+- middleware classes live in the module `Middlewares` namespace
+- they extend `Quantum\Middleware\QtMiddleware`
+- they receive `Request`, `Response`, and `Closure $next`
+- they can stop the request with a redirect
+- they continue the pipeline with `$next($request, $response)`
 
-- middleware classes live in a module `Middlewares` namespace
-- they extend `QtMiddleware`
-- they implement `apply(Request $request, Response $response, Closure $next)`
-- they either stop the request or call `$next(...)`
+This is much closer to what you actually generate in Quantum than a generic framework-style example.
 
-For real project code, use the actual generated or template middleware in your module as the starting point, especially for `Auth`, `Editor`, `PostOwner`, or `CommentOwner` style behavior.
+If you want more advanced middleware examples, the upstream templates also include `Editor`, `PostOwner`, and `CommentOwner`, which build on validation and ownership checks through a shared `BaseMiddleware`.
 
 ## Base middleware classes
 
