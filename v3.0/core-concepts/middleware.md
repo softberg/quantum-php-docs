@@ -156,6 +156,45 @@ For example:
 
 This is a good beginner lesson: middleware behavior should fit the kind of application surface you are building.
 
+## Complete middleware class example
+
+A middleware doc should not stop at the method signature. Here is a full example of the kind of class beginners need to see.
+
+```php
+<?php
+
+namespace Modules\Blog\Middlewares;
+
+use Closure;
+use Quantum\Http\Request;
+use Quantum\Http\Response;
+use Quantum\Middlewares\QtMiddleware;
+
+class Auth extends QtMiddleware
+{
+    public function apply(Request $request, Response $response, Closure $next)
+    {
+        if (! session()->has('user')) {
+            return redirect('/signin');
+        }
+
+        return $next($request, $response);
+    }
+}
+```
+
+What this example does:
+
+- checks whether a user session exists
+- redirects guests to `/signin`
+- allows the request to continue only for authenticated users
+
+This is the most common beginner middleware shape:
+
+- inspect the request or session
+- stop the request if a rule fails
+- otherwise call `$next(...)`
+
 ## Base middleware classes
 
 The demo templates include `BaseMiddleware` classes for both web and API modules.
