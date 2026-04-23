@@ -1,20 +1,18 @@
 # Code Generation
 
-In the current Quantum PHP Framework command set, code generation is mainly centered around creating modules and migrations.
+The `qt` command-line tool does more than run the local server. It also helps generate and publish project structure, migration files, environment files, application keys, and OpenAPI assets.
 
-So this page should not talk about generation in a vague framework sense. It should describe what `qt` actually generates today.
+## What `qt` can create or publish
 
-## What `qt` currently generates
+From the current upstream command set, `qt` can help create or publish things such as:
 
-From the upstream core commands, the main generation commands are:
+- new modules from templates
+- new migration files
+- a local `.env` file from `.env.example`
+- an application key stored in `.env`
+- OpenAPI UI resources and OpenAPI specification files
 
-- `php qt module:generate`
-- `php qt migration:generate`
-
-That means the current code generation story is primarily about:
-
-- generating new modules from templates
-- generating new migration files
+So code generation in Quantum is broader than only scaffolding code files. It also includes project setup and generated project resources.
 
 ## Module generation
 
@@ -82,7 +80,7 @@ So module generation is the real center of scaffolding in Quantum right now.
 
 ## Migration generation
 
-The second generation command is:
+Another generation command is:
 
 ```bash
 php qt migration:generate create posts
@@ -117,19 +115,64 @@ Its job is focused and specific:
 
 That makes it part of Quantum's code generation story, even though it is more narrow than module scaffolding.
 
-## What code generation does not currently mean
+## Environment file generation
 
-Based on the current upstream command set, the docs should be careful not to imply that `qt` currently generates every framework piece individually.
+Quantum also includes:
 
-For example, the current built-in commands do not show separate generators like:
+```bash
+php qt core:env
+```
+
+From the upstream `EnvCommand`, this command:
+
+- checks for `.env.example`
+- copies `.env.example` to `.env`
+- can ask for confirmation before overwriting an existing `.env`
+
+So this is also part of the generation story, because it creates a real project file needed for local setup.
+
+## Application key generation
+
+Quantum also includes:
+
+```bash
+php qt core:key
+```
+
+From the upstream `KeyGenerateCommand`, this command:
+
+- generates a random application key
+- writes it into the `APP_KEY` row in `.env`
+- can ask for confirmation before replacing an existing key
+
+This is another example where `qt` generates project state, not just source files.
+
+## OpenAPI resource generation
+
+Quantum also includes:
+
+```bash
+php qt install:openapi Api
+```
+
+From the upstream `OpenApiCommand`, this command can:
+
+- publish OpenAPI UI resources into the public assets directory
+- update the target module routes for OpenAPI endpoints when needed
+- create the module `resources/openapi/` directory
+- generate an OpenAPI `spec.json` file from controller annotations
+
+So `qt` is also able to generate API documentation resources, not only application scaffolding.
+
+## What generation usually does not mean here
+
+The current built-in command set does not show separate generators like:
 
 - `controller:generate`
 - `middleware:generate`
 - `view:generate`
 
-Those pieces are typically created through module templates, not through standalone generator commands.
-
-That is an important reality check for this page.
+Those parts are usually introduced through module templates instead of individual generator commands.
 
 ## Why generation still matters
 
@@ -141,19 +184,22 @@ The main benefits are:
 - less manual boilerplate
 - template-based module structure
 - consistent migration file creation
+- generated environment and key setup
+- generated OpenAPI resources and specs
 - automatic module config updates
 
 ## A practical way to use it
 
 A normal flow can look like this:
 
-1. generate a module
-2. inspect the generated controllers, routes, middlewares, and views
-3. edit the generated files for your feature
-4. generate migrations as the database changes
-5. run migrations with `php qt migration:migrate`
-
-That is a much more accurate description of Quantum's current generation workflow than talking about broad generic scaffolding.
+1. generate `.env` with `php qt core:env`
+2. generate an app key with `php qt core:key`
+3. generate a module
+4. inspect the generated controllers, routes, middlewares, and views
+5. edit the generated files for your feature
+6. generate migrations as the database changes
+7. run migrations with `php qt migration:migrate`
+8. publish OpenAPI resources when needed
 
 ## Suggested next reading
 
