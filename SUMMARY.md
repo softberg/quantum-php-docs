@@ -28,6 +28,7 @@
 
 ### CLI
 * [CLI Overview](v3.0/cli/overview.md)
+* [The `qt` Command-Line Tool](v3.0/cli/qt-command-line-tool.md)
 * [Development Server](v3.0/cli/development-server.md)
 * [Code Generation](v3.0/cli/code-generation.md)
 * [Console Commands](v3.0/cli/console-commands.md)
