@@ -1,111 +1,165 @@
 # Code Generation
 
-One of the most practical parts of a framework CLI is code generation.
+In the current Quantum PHP Framework command set, code generation is mainly centered around creating modules and migrations.
 
-In the Quantum PHP Framework, generation commands help you create framework-aligned structure faster instead of building every file and folder manually.
+So this page should not talk about generation in a vague framework sense. It should describe what `qt` actually generates today.
 
-## Why code generation matters
+## What `qt` currently generates
 
-When developers are new to a framework, they often do not just need to create code.
-They need to create code in the right place and in the right shape.
+From the upstream core commands, the main generation commands are:
 
-That is where generation commands help.
+- `php qt module:generate`
+- `php qt migration:generate`
 
-They reduce uncertainty by making it easier to:
+That means the current code generation story is primarily about:
 
-- follow framework conventions
-- create repeatable structure
-- avoid boilerplate mistakes
-- move faster when building new features
+- generating new modules from templates
+- generating new migration files
 
-## Core idea
+## Module generation
 
-Think of code generation as scaffolding.
+The main scaffolding command is:
 
-You are not asking the CLI to build the entire application for you.
-You are asking it to create the correct starting structure so you can focus on the actual feature logic.
+```bash
+php qt module:generate Blog
+```
 
-## What generation usually helps create
+This command creates a new module using a template.
 
-In a Quantum project, generation is especially useful around module-based architecture.
+From the upstream `ModuleGenerateCommand`, it accepts:
 
-Depending on the command, it may help create things like:
+- a required module name argument
+- `--template` or `-t`
+- `--yes` or `-y`
+- `--with-assets` or `-a`
 
-- modules
+A more explicit example looks like:
+
+```bash
+php qt module:generate Blog --template=DefaultWeb --with-assets
+```
+
+## What `module:generate` actually does
+
+From the upstream `ModuleManager`, module generation does real framework work, not just file copying.
+
+It:
+
+- ensures the `modules/` directory exists
+- loads files from a module template
+- processes template placeholders such as module namespace and module name
+- writes the generated files into `modules/<ModuleName>/`
+- optionally copies template assets into the assets directory
+- updates `shared/config/modules.php`
+
+So this command is important because it creates a framework-ready module and also registers it in project configuration.
+
+## Available module templates
+
+From the current upstream core templates, the available module templates are:
+
+- `DefaultApi`
+- `DefaultWeb`
+- `DemoApi`
+- `DemoWeb`
+- `Toolkit`
+
+This matters because `module:generate` is not one fixed scaffold. The template changes what kind of module structure you start with.
+
+## What a generated module can include
+
+Depending on the selected template, a generated module can include things such as:
+
 - controllers
+- routes
 - middlewares
-- supporting framework directories and files
+- views
+- services
+- other module files
+- optional assets when `--with-assets` is used
 
-This keeps your project layout consistent with how Quantum expects applications to grow.
+So module generation is the real center of scaffolding in Quantum right now.
 
-## Why this is useful in real projects
+## Migration generation
 
-Manual file creation sounds simple in a tiny project.
-But as the project grows, consistency matters more.
+The second generation command is:
 
-Generated structure helps teams keep:
+```bash
+php qt migration:generate create posts
+```
 
-- naming predictable
-- folders consistent
-- shared conventions easier to follow
+From the upstream `MigrationGenerateCommand`, this command requires:
 
-That is especially important when multiple modules are involved.
+- an action
+- a table name
 
-## When to use generation commands
+The supported action flow is described in the command as:
 
-You should reach for generation commands when:
+- `create`
+- `alter`
+- `rename`
+- `drop`
 
-- starting a new module
-- adding a new framework-level component
-- learning the framework's preferred structure
-- trying to avoid repetitive setup work
+So another valid example would be:
 
-The biggest benefit is not speed alone. It is confidence.
+```bash
+php qt migration:generate alter posts
+```
 
-If the framework generates the structure, you know you are starting from a valid baseline.
+## What `migration:generate` does
 
-## Code generation and architecture
+This command creates a new migration file through `MigrationManager`.
 
-Good CLI generation does more than save keystrokes.
-It reinforces the framework's architecture.
+Its job is focused and specific:
 
-In Quantum, that matters because modules, middleware, and controller structure are part of how applications are organized.
+- generate the migration file name
+- create a new migration file for the given action and table
 
-So generation commands help teach architecture while also creating files.
+That makes it part of Quantum's code generation story, even though it is more narrow than module scaffolding.
 
-## What generation does not replace
+## What code generation does not currently mean
 
-It is still important to understand the framework concepts behind the generated files.
+Based on the current upstream command set, the docs should be careful not to imply that `qt` currently generates every framework piece individually.
 
-The CLI can create:
+For example, the current built-in commands do not show separate generators like:
 
-- the file
-- the folder
-- the starter structure
+- `controller:generate`
+- `middleware:generate`
+- `view:generate`
 
-But you still need to understand:
+Those pieces are typically created through module templates, not through standalone generator commands.
 
-- when to use a controller
-- when middleware belongs on a route
-- how a module fits into the project
-- what the generated code is supposed to do
+That is an important reality check for this page.
 
-So generation should support learning, not replace it.
+## Why generation still matters
 
-## A practical rule
+Even with a smaller command set, generation is still valuable because it helps create Quantum-aligned structure.
 
-Use generation commands when they help you stay aligned with framework conventions.
+The main benefits are:
 
-Do not treat generated code as magic.
-Read what the CLI created and understand why it belongs there.
+- faster project setup
+- less manual boilerplate
+- template-based module structure
+- consistent migration file creation
+- automatic module config updates
 
-That is the fastest path to becoming comfortable with the framework.
+## A practical way to use it
+
+A normal flow can look like this:
+
+1. generate a module
+2. inspect the generated controllers, routes, middlewares, and views
+3. edit the generated files for your feature
+4. generate migrations as the database changes
+5. run migrations with `php qt migration:migrate`
+
+That is a much more accurate description of Quantum's current generation workflow than talking about broad generic scaffolding.
 
 ## Suggested next reading
 
-If you are learning Quantum through hands-on building, these pages fit well with code generation:
+These pages fit well with code generation:
 
+- [The `qt` Command-Line Tool](qt-command-line-tool.md)
+- [Console Commands](console-commands.md)
 - [Modules Overview](../modules/overview.md)
-- [Controllers](../core-concepts/controllers.md)
-- [Middleware](../core-concepts/middleware.md)
 - [Project Structure](../getting-started/project-structure.md)
