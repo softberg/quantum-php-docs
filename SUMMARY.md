@@ -19,6 +19,7 @@
 * [Controllers](v3.0/core-concepts/controllers.md)
 * [Views](v3.0/core-concepts/views.md)
 * [Middleware](v3.0/core-concepts/middleware.md)
+* [Services](v3.0/core-concepts/services.md)
 
 ### Modules
 * [Modules Overview](v3.0/modules/overview.md)
