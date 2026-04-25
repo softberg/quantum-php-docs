@@ -27,6 +27,7 @@
 ### Advanced Features
 * [Request Lifecycle](v3.0/advanced-features/request-lifecycle.md)
 * [Configuration](v3.0/advanced-features/configuration.md)
+* [Dependency Injection](v3.0/advanced-features/dependency-injection.md)
 
 ### CLI
 * [CLI Overview](v3.0/cli/overview.md)
