@@ -26,6 +26,7 @@
 
 ### Advanced Features
 * [Request Lifecycle](v3.0/advanced-features/request-lifecycle.md)
+* [Configuration](v3.0/advanced-features/configuration.md)
 
 ### CLI
 * [CLI Overview](v3.0/cli/overview.md)
