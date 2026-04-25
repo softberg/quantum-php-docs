@@ -22,7 +22,7 @@
 * [Services](v3.0/core-concepts/services.md)
 
 ### Modules
-* [Modules Overview](v3.0/modules/overview.md)
+* [Modules Overview](v3.0/core-concepts/modules.md)
 
 ### Advanced Features
 * [Request Lifecycle](v3.0/advanced-features/request-lifecycle.md)

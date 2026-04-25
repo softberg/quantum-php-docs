@@ -1,4 +1,6 @@
-# Modules Overview
+# Modules
+
+## Overview
 
 Modules are one of the core organizational ideas in the Quantum PHP Framework.
 
@@ -105,8 +107,6 @@ The richer demo templates show that modules can also contain:
 So modules in Quantum can scale from simple to fairly complete feature packages.
 
 ## Fresh skeleton vs active modules
-
-One thing is worth explaining clearly.
 
 A fresh project skeleton may not always show populated module directories immediately. But that does **not** mean modules are theoretical or undocumented features.
 
