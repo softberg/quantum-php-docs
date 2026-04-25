@@ -56,6 +56,6 @@ $orm = $db->getOrmClass();
 
 Explore:
 
-- [Database Migrations](migration.md)
-- [Models and DbModel](core-concepts/models.md)
-- [Services for database logic](core-concepts/services.md)
+- [Database Migrations](../advanced-features/migration.md)
+- [Models and DbModel](../core-concepts/models.md)
+- [Services for database logic](../core-concepts/services.md)
