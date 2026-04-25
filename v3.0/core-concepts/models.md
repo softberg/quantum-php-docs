@@ -85,6 +85,35 @@ Services encapsulate business logic and data operations, and controllers or othe
 
 ---
 
+## Model Relationships
+
+Quantum models define relationships to other models using the `relations()` method.
+
+This method returns an array mapping related model classes to configuration arrays specifying:
+
+- `type`: Relation type (e.g., `Relation::BELONGS_TO`, `Relation::HAS_MANY`)
+- `foreign_key`: The foreign key column in the related model
+- `local_key`: The local key column in the current model
+
+Example:
+
+```php
+public function relations(): array
+{
+    return [
+        User::class => [
+            'type' => Relation::BELONGS_TO,
+            'foreign_key' => 'user_uuid',
+            'local_key' => 'uuid',
+        ]
+    ];
+}
+```
+
+This definition allows the framework to understand and resolve model associations for queries and data access.
+
+---
+
 ## Benefits of Using Models
 
 - Centralize data representation and logic.
