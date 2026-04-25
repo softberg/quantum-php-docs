@@ -91,11 +91,17 @@ Quantum models define relationships to other models using the `relations()` meth
 
 This method returns an array mapping related model classes to configuration arrays specifying:
 
-- `type`: Relation type (e.g., `Relation::BELONGS_TO`, `Relation::HAS_MANY`)
+- `type`: Relation type (e.g., `Relation::BELONGS_TO`, `Relation::HAS_MANY`, `Relation::HAS_ONE`)
 - `foreign_key`: The foreign key column in the related model
 - `local_key`: The local key column in the current model
 
-Example:
+### Relationship Types
+
+- `Relation::BELONGS_TO`: This model belongs to the related model (many-to-one).
+- `Relation::HAS_MANY`: This model has many related models (one-to-many).
+- `Relation::HAS_ONE`: This model has a single related model (one-to-one).
+
+### Example:
 
 ```php
 public function relations(): array
