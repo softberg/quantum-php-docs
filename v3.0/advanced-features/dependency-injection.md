@@ -64,8 +64,7 @@ Di::autowire(function(FooInterface $foo, BarService $bar) {
 
 Explore:
 
-- [Service discovery and lifetime management](../core-concepts/services.md)
-- [Custom factory bindings](../core-concepts/services.md)
+- [Service lifecycle management](../core-concepts/services.md)
 - [Integration with Quantum modules and services](../core-concepts/modules.md)
 
 
