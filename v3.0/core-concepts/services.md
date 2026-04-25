@@ -98,7 +98,7 @@ class YourService extends QtService
 
 To deepen understanding, explore:
 
-- Model usage and conventions in Quantum.
-- How transformers shape output data.
-- Dependency injection and service registration.
-- Developing custom services tailored to specific app needs.
+- [Model usage and conventions in Quantum](../core-concepts/models.md).
+- [How transformers shape output data](../core-concepts/transformers.md).
+- [Dependency injection and service registration](../advanced-features/dependency-injection.md).
+- [Developing custom services tailored to specific app needs](../core-concepts/services.md).
