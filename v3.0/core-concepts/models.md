@@ -58,6 +58,33 @@ class YourModel extends DbModel
 
 ---
 
+## How to Use Models
+
+Typically, models are accessed and manipulated through service classes using the `model()` helper function.
+
+Inside a service:
+
+```php
+public function __construct()
+{
+    $this->model = model(YourModel::class);
+}
+
+public function getAll()
+{
+    return $this->model->get();
+}
+
+public function findById(string $id)
+{
+    return $this->model->findOneBy('id', $id);
+}
+```
+
+Services encapsulate business logic and data operations, and controllers or other app components call these services.
+
+---
+
 ## Benefits of Using Models
 
 - Centralize data representation and logic.
