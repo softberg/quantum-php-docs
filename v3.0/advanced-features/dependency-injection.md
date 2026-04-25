@@ -68,3 +68,11 @@ Explore:
 - [Custom factory bindings](../core-concepts/services.md)
 - [Integration with Quantum modules and services](../core-concepts/modules.md)
 
+
+## Related Topics
+
+- Learn about [Service discovery and lifetime management](../core-concepts/services.md)
+- Explore [Custom factory bindings](../core-concepts/services.md)
+- Discover [Integration with Quantum modules and services](../core-concepts/modules.md)
+
+
