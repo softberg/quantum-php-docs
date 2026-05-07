@@ -23,7 +23,20 @@ A simple view of the flow looks like this:
 6. the response is prepared
 7. output is returned to the client
 
-This is the backbone of nearly every web interaction in the framework.
+### The Bootstrapping Pipeline
+
+Before a request is processed, the `WebAppAdapter` executes a pre-dispatch bootstrap flow:
+
+1. `LoadHelpersStage`: Initializes helper functions.
+2. `LoadEnvironmentStage`: Loads environment variables.
+3. `LoadAppConfigStage`: Loads application configurations.
+4. `SetupErrorHandlerStage`: Configures global error handling.
+5. `InitHttpStage`: Initializes HTTP request/response objects.
+6. `InitDebuggerStage`: Sets up the debugging environment.
+7. `LoadModulesStage`: Boots registered application modules.
+
+This sequence ensures the execution environment is fully prepared before the router attempts to match the URL.
+
 
 ## 1. The request enters the application
 
