@@ -71,23 +71,35 @@ This is useful for pages or endpoints that both display and handle a form-like f
 
 ## Route patterns and parameters
 
-Quantum routes support parameterized patterns.
+Quantum routes support parameterized patterns using the syntax `[name=:type]`.
 
-Examples from the upstream templates include:
+### Supported parameter types
+
+- `:alpha`: matches alphabetic characters (a-z, A-Z)
+- `:num`: matches numeric characters (0-9)
+- `:any`: matches any character (wildcard)
+
+### Pattern variations
+
+- **Optional segments**: Append `?` to the segment (e.g., `verify/[code=:any]?`)
+- **Length constraints**: Use `:type:N` to specify an exact length constraint (e.g., `[id=:num:5]` for a 5-digit number)
+- **Optional length variants**: Use `:type:N?` to match a variable length up to N
+
+### Examples
 
 ```php
+// Standard parameters
 $route->get('post/[uuid=:any]', 'PostController', 'post');
-$route->get('activate/[token=:any]', 'AuthController', 'activate');
-$route->add('verify/[code=:any]?', 'GET|POST', 'AuthController', 'verify');
+
+// Length constrained parameters
+$route->get('user/[id=:num:3]', 'UserController', 'show'); // Matches 3-digit IDs
+
+// Optional segments
+$route->add('verify/[code=:alpha:10]?', 'GET|POST', 'AuthController', 'verify');
 ```
 
-These patterns show that Quantum supports:
-
-- named parameters such as `uuid` and `token`
-- typed or constrained pattern segments such as `:any`
-- optional segments using `?`
-
 The router also exposes helper functions for current route information, including route parameters.
+
 
 ## Named routes
 
