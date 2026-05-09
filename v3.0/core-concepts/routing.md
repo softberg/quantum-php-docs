@@ -196,6 +196,37 @@ A useful way to think about Quantum routing is:
 - the router finds the matching route for the request
 - the dispatcher runs the controller action or closure
 
-## What to read next
+## Route caching and rate limiting
 
-After routing, the next best topic is controllers, because routes usually point to controller actions in real applications.
+Quantum provides built-in support for caching router responses and applying rate limits directly from your route definitions. These methods are available on the `RouteBuilder` API and apply to the current route or a defined route group.
+
+### Route-level configuration
+
+You can apply caching and rate limiting to individual routes using `cacheable()` and `rateLimit()`:
+
+```php
+// Cache this response for 60 seconds
+$route->get('page', 'PageController', 'show')->cacheable(true, 60);
+
+// Limit this endpoint to 100 requests per 60 seconds
+$route->get('api/posts', 'PostController', 'index')->rateLimit(100, 60);
+```
+
+### Group-level configuration
+
+You can also apply these settings to an entire group of routes:
+
+```php
+$route->group('cached', function ($route) {
+    $route->get('profile', 'UserController', 'show');
+    $route->get('settings', 'UserController', 'edit');
+})->cacheable(true, 120);
+
+$route->group('api', function ($route) {
+    $route->get('data', 'ApiController', 'data');
+    $route->post('submit', 'ApiController', 'submit');
+})->rateLimit(50, 30);
+```
+
+> **Note:** `rateLimit` values must be greater than 0; providing an invalid value will result in an exception.
+
