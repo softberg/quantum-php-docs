@@ -23,7 +23,14 @@ The DI system centers around three main classes:
 - `Di::register(string $concrete, ?string $abstract = null)`: Register a dependency.
 - `Di::get(string $abstract, array $args = [])`: Retrieve shared instance.
 - `Di::create(string $abstract, array $args = [])`: Create a new instance.
-- `Di::autowire(callable $callable, array $args = [])`: Autowire parameters and invoke a callable.
+- `Di::autowire(callable $callable, array $args = [])`: Autowire parameters for a callable. This method returns an array of resolved arguments and does not invoke the callable.
+
+Usage:
+
+```php
+$args = Di::autowire($callable, $inputArgs);
+$callable(...$args);
+```
 - `Di::set(string $abstract, object $instance)`: Manually set an instance.
 
 ## Usage Example
@@ -32,7 +39,7 @@ The DI system centers around three main classes:
 use Quantum\Di\Di;
 
 // Register interface to class binding
-Di::register(FooInterface::class, FooService::class);
+Di::register(FooService::class, FooInterface::class);
 
 // Get singleton instance
 $foo = Di::get(FooInterface::class);
