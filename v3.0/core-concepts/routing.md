@@ -73,11 +73,20 @@ This is useful for pages or endpoints that both display and handle a form-like f
 
 Quantum routes support parameterized patterns using the syntax `[name=:type]`.
 
-### Supported parameter types
+### Parameter validation
 
-- `:alpha`: matches alphabetic characters (a-z, A-Z)
-- `:num`: matches numeric characters (0-9)
-- `:any`: matches any character (wildcard)
+Route parameter names must be letters only (`^[a-zA-Z]+$`). Using invalid characters or duplicate parameter names within a single route definition will result in a `RouteException`.
+
+**Examples:**
+
+```php
+// Valid
+$route->get('post/[id=:num]', 'PostController', 'show');
+
+// Invalid: contains a number in the parameter name
+$route->get('post/[id1=:num]', 'PostController', 'show');
+```
+
 
 ### Pattern variations
 
@@ -110,6 +119,19 @@ $route->get('posts', 'PostController', 'posts')->name('posts');
 ```
 
 Named routes make it easier to refer to important endpoints by intention instead of by repeating raw paths.
+
+> **Note**: Route name uniqueness is enforced **per module**, not globally. This allows you to safely use identical route names in different modules.
+
+**Example: Reusing route names**
+
+```php
+// In the Api module
+$route->get('data', 'ApiController', 'data')->name('list');
+
+// In the Web module (Safe, same name, different module)
+$route->get('list', 'WebController', 'list')->name('list');
+```
+
 
 ## Route groups
 
