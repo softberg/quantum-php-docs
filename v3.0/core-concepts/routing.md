@@ -220,9 +220,22 @@ It can also filter by module.
 
 This is helpful when you want to verify what the application has actually registered.
 
-## Practical view
+## Route matching precedence
 
-A useful way to think about Quantum routing is:
+The router follows a "first-hit" matching strategy. Route registration order is critical: the framework matches the incoming request (method + URI) against the registry and immediately dispatches the first route that satisfies the conditions, ignoring any subsequent overlapping routes.
+
+> **Best Practice**: Always declare specific (static) routes before broad (dynamic) or catch-all routes to avoid unexpected dispatch behavior.
+
+**Example: Overlapping routes**
+
+```php
+// If this route is declared first, it will always match
+$route->get('posts/latest', 'PostController', 'latest');
+
+// This broader dynamic route would never be reached if declared after
+$route->get('posts/[id=:num]', 'PostController', 'show');
+```
+
 
 - each module defines its own routes
 - each route maps a method and URL pattern to a handler
