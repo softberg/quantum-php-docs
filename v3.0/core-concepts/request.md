@@ -28,6 +28,7 @@ $request->getQueryParam('age');  // Returns null
 This method appends a new query parameter to the query string.
 
 - **Non-overwriting**: It does not overwrite existing keys. If a key already exists, appending will result in duplicate keys in the raw query string.
+- **Encoding contract**: The framework **does not URL-encode** the key or value. Callers are responsible for encoding values if they contain spaces or special characters.
 
 **Example:**
 
@@ -37,10 +38,12 @@ This method appends a new query parameter to the query string.
 $request->setQueryParam('user', 'arman');
 // Query string: "user=arman"
 
-$request->setQueryParam('id', '1');
-// Query string: "user=arman&id=1"
+// Appending with special characters (no automatic encoding)
+$request->setQueryParam('message', 'hello world'); 
+// Raw query string: "user=arman&message=hello world"
 
-// Appending an existing key
+// Appending an existing key (duplicate keys)
+$request->setQueryParam('id', '1');
 $request->setQueryParam('id', '2');
-// Query string: "user=arman&id=1&id=2"
+// Raw query string: "user=arman&message=hello world&id=1&id=2"
 ```
