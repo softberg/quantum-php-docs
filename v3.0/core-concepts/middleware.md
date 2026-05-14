@@ -52,20 +52,20 @@ This is one reason middleware feels central in Quantum. You see it directly insi
 
 ## The middleware contract
 
-At the framework level, middleware classes extend `QtMiddleware` and implement:
+At the framework level, middleware classes extend `Quantum\Middleware\Middleware` and implement:
 
 ```php
-apply(Request $request, Response $response, Closure $next)
+apply(Request $request, Closure $next): Response
 ```
 
 That means every middleware receives:
 
 - the current request
-- the current response
 - a `$next` callback for continuing the pipeline
 
-If the middleware calls `$next(...)`, processing continues.
-If it does not, the request stops there.
+**Note**: Middleware instances are constructed as `new $middlewareClass($request)` by the `MiddlewareManager` before the `apply()` method is executed.
+
+If the middleware calls `$next($request)`, processing continues. If it does not, the request stops there.
 
 ## How Quantum resolves middleware classes
 
@@ -167,20 +167,20 @@ Here is the actual structure used by the upstream `Auth` middleware template:
 
 namespace {{MODULE_NAMESPACE}}\Middlewares;
 
-use Quantum\Middleware\QtMiddleware;
+use Quantum\Middleware\Middleware;
 use Quantum\Http\Response;
 use Quantum\Http\Request;
 use Closure;
 
-class Auth extends QtMiddleware
+class Auth extends Middleware
 {
-    public function apply(Request $request, Response $response, Closure $next)
+    public function apply(Request $request, Closure $next): Response
     {
         if (!auth()->check()) {
             redirect(base_url(true) . '/' . current_lang() . '/signin');
         }
 
-        return $next($request, $response);
+        return $next($request);
     }
 }
 ```
@@ -188,10 +188,10 @@ class Auth extends QtMiddleware
 What this real template example shows:
 
 - middleware classes live in the module `Middlewares` namespace
-- they extend `Quantum\Middleware\QtMiddleware`
-- they receive `Request`, `Response`, and `Closure $next`
+- they extend `Quantum\Middleware\Middleware`
+- they receive `Request` and `Closure $next`
 - they can stop the request with a redirect
-- they continue the pipeline with `$next($request, $response)`
+- they continue the pipeline with `$next($request)`
 
 This is much closer to what you actually generate in Quantum than a generic framework-style example.
 
