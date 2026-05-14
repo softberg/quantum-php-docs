@@ -25,7 +25,25 @@ This is the public web root of the application.
 
 Notable contents include:
 
-- `public/index.php` as the main web entry point
+### `public/index.php`
+
+This file is the main web entry point. It serves as a thin handoff to the framework's core bootstrap logic.
+
+```php
+require dirname(__DIR__) . '/vendor/autoload.php';
+
+use Quantum\App\Factories\AppFactory;
+use Quantum\App\Enums\AppType;
+
+if (!defined('DS')) {
+    define('DS', DIRECTORY_SEPARATOR);
+}
+
+AppFactory::create(AppType::WEB, dirname(__DIR__))->start();
+```
+
+It is important to note that this file is not where request lifecycle logic lives; that is handled within `AppFactory` and the `WebAppAdapter`.
+
 - `public/assets/` for publicly served assets
 - `public/uploads/` for uploaded files
 - `public/.htaccess` for Apache-style web server configuration
