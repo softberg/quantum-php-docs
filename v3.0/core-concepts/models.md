@@ -132,9 +132,13 @@ This definition allows the framework to understand and resolve model association
 
 ## Next Steps
 
-To deepen understanding, explore:
+Explore:
 
-- How models interact with services for business logic.
-- Usage of data transfer objects (DTOs) and transformers.
-- Query building and pagination methods available on DbModel.
+- [Services](../core-concepts/services.md)
+- [Dependency Injection](../advanced-features/dependency-injection.md)
+- [Database](../advanced-features/database.md)
 
+## Related Topics
+
+- For more on database queries, visit the [Database documentation](../advanced-features/database.md).
+- See also the [Migration system](../advanced-features/migration.md) to manage schema changes.

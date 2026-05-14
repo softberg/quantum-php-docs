@@ -61,13 +61,13 @@ class CreateTableUsers extends QtMigration
 You can generate a migration file using the CLI:
 
 ```bash
-php qt migration:create <action> <table_name>
+php qt migration:generate <action> <table_name>
 ```
 
 Example:
 
 ```bash
-php qt migration:create create users
+php qt migration:generate create users
 ```
 
 This creates a migration file with an up/down template for the specified action.
@@ -80,11 +80,13 @@ Apply pending migrations with:
 php qt migration:migrate
 ```
 
-To rollback (downgrade) migrations:
+To downgrade migrations:
 
 ```bash
-php qt migration:rollback [steps]
+php qt migration:migrate down --step=1
 ```
+
+You can increase `--step` to revert more migrations.
 
 ## MigrationManager Responsibilities
 
@@ -103,8 +105,12 @@ php qt migration:rollback [steps]
 
 ## Next Steps
 
-Explore related topics:
+Explore:
 
 - [Database](../advanced-features/database.md)
 - [Models](../core-concepts/models.md)
 - [Services](../core-concepts/services.md)
+
+## Further Reading
+
+For more details, see the [migration CLI commands documentation](../cli/console-commands.md#migrations) for practical usage examples.
