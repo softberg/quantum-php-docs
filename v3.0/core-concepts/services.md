@@ -40,11 +40,20 @@ The default API Demo module contains several example services: `AuthService`, `P
 
 ## Service Implementation Patterns
 
-- Extend base class `QtService` for core functionality.
+- Extend base class `Quantum\Service\Service` for core functionality.
 - Inject dependencies through constructor parameters.
 - Throw framework-specific exceptions for error handling.
 - Use model query methods for data retrieval and manipulation.
 - Incorporate transformers for formatting output data.
+
+---
+
+## Service Factory Contract
+
+The `service(string $serviceClass, bool $singleton = false)` helper function provides a factory mechanism for instantiating services:
+
+- **`$singleton = false` (default)**: Returns a fresh instance of the service via `ServiceFactory::create()`, which invokes `Di::create()` to resolve dependencies.
+- **`$singleton = true`**: Returns a shared instance of the service via `ServiceFactory::get()`, which invokes `Di::get()` to return a singleton from the DI container.
 
 
 ---
@@ -56,11 +65,11 @@ Here is a basic example of creating a new service in Quantum PHP Framework:
 ```php
 namespace Modules\YourModule\Services;
 
-use Quantum\Service\QtService;
+use Quantum\Service\Service;
 use Quantum\Model\ModelCollection;
 use Modules\YourModule\Models\YourModel;
 
-class YourService extends QtService
+class YourService extends Service
 {
     private YourModel $model;
 
@@ -96,9 +105,12 @@ class YourService extends QtService
 
 ## Next Steps
 
-To deepen understanding, explore:
+Explore:
 
-- [Model usage and conventions in Quantum](../core-concepts/models.md).
-- [How transformers shape output data](../core-concepts/transformers.md).
-- [Dependency injection and service registration](../advanced-features/dependency-injection.md).
-- [Developing custom services tailored to specific app needs](../core-concepts/services.md).
+- [Models](../core-concepts/models.md)
+- [Transformers](../core-concepts/transformers.md)
+- [Dependency Injection](../advanced-features/dependency-injection.md)
+
+## Related Topics
+
+- See the [Service Lifecycle Management](../core-concepts/services.md) section for additional context.
