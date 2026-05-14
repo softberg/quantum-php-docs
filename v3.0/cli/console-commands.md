@@ -17,7 +17,7 @@ The console command system is split across the core framework and the starter pr
 ### In `quantum-php-core`
 The core framework provides:
 
-- the base command class: `Quantum\Console\QtCommand`
+- the base command class: `Quantum\Console\CliCommand`
 - command discovery: `Quantum\Console\CommandDiscovery`
 - built-in commands such as:
   - `serve`
@@ -58,20 +58,22 @@ So the command system is designed to be extendable. The framework gives you the 
 
 ## How command discovery works
 
-From the upstream `CommandDiscovery`, Quantum scans a directory of PHP classes, checks whether each class exists, and keeps only classes that are instantiable subclasses of `QtCommand`.
+From the upstream `CommandDiscovery`, Quantum scans a directory of PHP classes, checks whether each class exists, and keeps only classes that are instantiable subclasses of `CliCommand`.
 
 In practice, that means a command is discovered when it:
 
 - exists in the expected commands directory
 - is autoloadable
-- extends `Quantum\Console\QtCommand`
+- extends `Quantum\Console\CliCommand`
 - can be instantiated
+
+**Note**: The `ConsoleAppAdapter` special-cases `core:env` boot stages to ensure the environment is ready for command discovery and execution.
 
 This makes the console layer convention-based, similar to other Quantum subsystems.
 
 ## The base command class
 
-All framework-style commands extend `Quantum\Console\QtCommand`.
+All framework-style commands extend `Quantum\Console\CliCommand`.
 
 That base class gives commands:
 
@@ -104,7 +106,7 @@ A typical command class in Quantum defines a few protected properties and then i
 A simplified example, based on the real command structure, looks like this:
 
 ```php
-class ExampleCommand extends QtCommand
+class ExampleCommand extends CliCommand
 {
     protected ?string $name = 'example:run';
 
@@ -188,7 +190,7 @@ The starter project also demonstrates how application-specific commands can be m
 
 For example, `DemoCommand` in `shared/Commands/`:
 
-- extends `QtCommand`
+- extends `CliCommand`
 - uses `install:demo` as its command name
 - defines the `--yes` option
 - uses confirmation prompts
@@ -202,7 +204,7 @@ This is important because it shows that Quantum commands are not limited to tiny
 
 ## Arguments and options
 
-In `QtCommand`, command arguments and options are declared as arrays.
+In `CliCommand`, command arguments and options are declared as arrays.
 
 ### Arguments
 Argument definitions use values such as:
@@ -259,7 +261,7 @@ A useful way to look at it is:
 - the `qt` file is the project entry point
 - `quantum-php-core` provides the command framework and built-in commands
 - `quantum-php-project` shows how projects add their own commands
-- `QtCommand` is the base shape for framework-style console commands
+- `CliCommand` is the base shape for framework-style console commands
 
 Once that clicks, the console side of Quantum becomes much easier to extend.
 
