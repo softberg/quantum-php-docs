@@ -1,6 +1,33 @@
-# Request Query Accessors
+# Request Handling
 
-The Quantum PHP Framework provides methods for interacting with request query parameters directly from the `Request` object.
+The Quantum PHP Framework provides comprehensive methods for interacting with request parameters, files, and payload data.
+
+## Input Merge Precedence
+
+When a request is initialized, the `Request` object aggregates parameters from various sources. The final parameters are merged in the following order of precedence (each source overwrites the previous one):
+
+1. **Query Parameters**: Parameters from the request URI query string.
+2. **POST Parameters**: Standard `$_POST` data.
+3. **JSON Payload**: Parsed contents of the request body if the content type is JSON.
+4. **URL-Encoded Body**: Parsed contents of the request body if the content type is `application/x-www-form-urlencoded`.
+5. **Multipart Raw Inputs**: Parsed parameters for requests with `multipart/form-data`.
+
+## Multipart Raw Parsing
+
+The framework supports raw parsing for `multipart/form-data` requests.
+
+- **Parser Gate**: The multipart raw parser is triggered for `PUT`, `PATCH`, and `POST` requests where the `Content-Type` header explicitly identifies `multipart/form-data`.
+- **Precedence**: These parameters are merged last, giving them the highest precedence over values defined in other sources.
+
+## Uploaded Files
+
+Uploaded files are handled through the `setUploadedFiles` method, which follows this merge baseline:
+
+1. **`$_FILES` Normalization**: PHP's native `$_FILES` global is processed and normalized first.
+2. **Multipart Raw Files**: Files extracted during raw multipart parsing are merged into the collection.
+3. **Merge Result**: The resulting files collection contains all uploaded files, with multipart raw-parsed files potentially overwriting existing keys from the normalized `$_FILES` array.
+
+See the [Advanced Request Lifecycle](../advanced-features/request-lifecycle.md) for further technical details on the parsing contract.
 
 ## Query Accessors
 
