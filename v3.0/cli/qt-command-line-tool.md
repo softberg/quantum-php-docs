@@ -59,7 +59,7 @@ Depending on the command, that includes stages such as:
 - loading app config
 - setting up the error handler
 
-There is one important exception: `core:env` is treated specially so the app can generate `.env` before a normal environment file exists.
+**Note**: Some boot stages, specifically those related to environment loading, are special-cased by `ConsoleAppAdapter` to ensure stable discovery and execution.
 
 ### 4. Core commands are registered
 Quantum then registers the framework's built-in commands from:
