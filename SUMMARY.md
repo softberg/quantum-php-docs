@@ -16,7 +16,9 @@
 
 ### Core Concepts
 * [Routing](v3.0/core-concepts/routing.md)
+* [Request](v3.0/core-concepts/request.md)
 * [Controllers](v3.0/core-concepts/controllers.md)
+* [Models](v3.0/core-concepts/models.md)
 * [Views](v3.0/core-concepts/views.md)
 * [Middleware](v3.0/core-concepts/middleware.md)
 * [Services](v3.0/core-concepts/services.md)
@@ -27,6 +29,9 @@
 ### Advanced Features
 * [Request Lifecycle](v3.0/advanced-features/request-lifecycle.md)
 * [Configuration](v3.0/advanced-features/configuration.md)
+* [Environment](v3.0/advanced-features/environment.md)
+* [Database](v3.0/advanced-features/database.md)
+* [Migration](v3.0/advanced-features/migration.md)
 * [Dependency Injection](v3.0/advanced-features/dependency-injection.md)
 
 ### CLI
