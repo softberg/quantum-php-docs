@@ -2,60 +2,90 @@
 
 ## Overview
 
-The Quantum PHP Framework offers a flexible and powerful database abstraction supporting multiple database systems through adapters. It includes features for connection management, ORM integration, query building, and migrations.
+Quantum resolves the active database adapter from `config/database.php` (`database.default`) and connects lazily through `Quantum\Database\Database`.
 
-## Supported Database Adapters
+Supported adapter keys:
 
-- MySQL (via Idiorm)
-- SQLite (via Idiorm)
-- PostgreSQL (via Idiorm)
-- SleekDB (NoSQL key-value store)
+- `mysql` → `IdiormDbal`
+- `sqlite` → `IdiormDbal`
+- `pgsql` → `IdiormDbal`
+- `sleekdb` → `SleekDbal`
 
-## Core Database Class
+## Configuration
 
-- Configures and manages the active database connection and ORM adapter based on application configuration.
-- Supports connection reuse and lazy connection initialization.
-- Provides access to the ORM class for further query and data operations.
-
-## Database Adapters
-
-Adapters implement the specific database logic and ORM integration for each supported technology.
-The `IdiormDbal` adapter is the main ORM implementation using Idiorm.
-
-### IdiormDbal Key Features
-
-- Connection setup, including dynamic DSN building.
-- Query operator mapping for expressive queries.
-- ORM model management and caching.
-- Support for transactions, joins, grouping, aggregates.
-- Error handling and validation.
-
-## Migrations
-
-Quantum supports database migrations to manage schema changes safely and consistently.
-Migration scripts are stored separately and executed via CLI tooling.
-
-## Usage
-
-You can configure the database connection in your config files and use the Database service to interact with data using models and query builders.
+A typical `config/database.php` uses this shape:
 
 ```php
-$db = new \Quantum\Database\Database();
-$orm = $db->getOrmClass();
+return [
+    'default' => 'sleekdb', // or mysql/sqlite/pgsql
 
-// Use $orm for queries...
+    'mysql' => [
+        'driver' => 'mysql',
+        'host' => 'localhost',
+        'dbname' => 'app',
+        'username' => 'root',
+        'password' => '',
+        'charset' => 'utf8',
+    ],
+
+    'sqlite' => [
+        'driver' => 'sqlite',
+        'database' => 'database.sqlite',
+    ],
+
+    'sleekdb' => [
+        'database_dir' => base_dir() . DS . 'shared' . DS . 'store',
+        'config' => [/* SleekDB options */],
+    ],
+];
 ```
+
+## Accessing Database Runtime
+
+Use the helper:
+
+```php
+$db = db(); // returns Quantum\Database\Database
+$adapterClass = $db->getOrmClass();
+$config = $db->getConfigs();
+```
+
+## SQL-only Raw Query APIs
+
+These `Database` static methods are forwarded to the active adapter:
+
+- `Database::execute($sql, $params)`
+- `Database::query($sql, $params)`
+- `Database::fetchColumns($table)`
+- `Database::lastQuery()`
+- `Database::queryLog()`
+
+Important: these APIs are implemented by `IdiormDbal` (SQL adapters). If `database.default` is `sleekdb`, SQL-only methods are not supported.
+
+## Transactions
+
+`Database::beginTransaction()`, `commit()`, `rollback()`, and `transaction(callable)` are available when using SQL adapters (`mysql`, `sqlite`, `pgsql`).
+
+## Querying Data (recommended path)
+
+Use `DbModel` via `model()` helper for app-level data access:
+
+```php
+$user = model(\Modules\App\Models\User::class)
+    ->criteria('email', '=', 'john@example.com')
+    ->first();
+```
+
+This keeps adapter-specific details behind model and service layers.
 
 ## Best Practices
 
-- Keep your configurations environment-aware.
-- Use migrations for all database schema updates.
-- Encapsulate database logic in models and services.
+- Keep `database.default` explicit per environment.
+- Use models/services for business queries; use raw SQL only when needed.
+- Use migrations for schema changes.
 
 ## Next Steps
 
-Explore:
-
 - [Database Migrations](../advanced-features/migration.md)
-- [Models and DbModel](../core-concepts/models.md)
-- [Services for database logic](../core-concepts/services.md)
+- [Models](../core-concepts/models.md)
+- [Services](../core-concepts/services.md)
