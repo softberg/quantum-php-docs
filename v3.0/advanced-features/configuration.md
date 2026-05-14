@@ -57,11 +57,22 @@ Other framework components frequently use the config system to determine behavio
 - Use environment overrides to separate dev, staging, and production configurations.
 - Avoid hardcoding values in code; prefer config injection.
 
-## Next Steps
 
-For broader understanding, explore:
+## Config Setup
 
-- Dependency Injection for configuration management.
-- Module-level configuration.
-- Environment and server variable management.
+The `Quantum\Loader\Setup` class acts as a descriptor for file loading.
+
+- **Module Defaulting**: When the `Setup` constructor is called without specifying a `module`, it implicitly defaults to `request()->getCurrentModule()`.
+
+### Path Resolution Table
+
+When loading configurations, the framework resolves file locations using the following hierarchy:
+
+| Lookup Priority | Path Resolution Logic | Casing Behavior |
+| :--- | :--- | :--- |
+| **1. Module Path** | `modules/{module}/{pathPrefix}/{fileName}.php` | Preserves case |
+| **2. Shared Fallback** | `shared/{lower(pathPrefix)}/{fileName}.php` | `pathPrefix` is forced to lowercase |
+
+*Note: The shared fallback only triggers if `hierarchical` is set to `true` in the `Setup` instance.*
+
 
