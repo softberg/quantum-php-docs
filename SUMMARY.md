@@ -13,6 +13,7 @@
 * [Quickstart](v3.0/getting-started/quickstart.md)
 * [Project Structure](v3.0/getting-started/project-structure.md)
 * [First App](v3.0/getting-started/first-app.md)
+* [Upgrade Guide (2.x to 3.0)](v3.0/upgrade-guide.md)
 
 ### Core Concepts
 * [Routing](v3.0/core-concepts/routing.md)
@@ -40,3 +41,4 @@
 * [Development Server](v3.0/cli/development-server.md)
 * [Code Generation](v3.0/cli/code-generation.md)
 * [Console Commands](v3.0/cli/console-commands.md)
+
