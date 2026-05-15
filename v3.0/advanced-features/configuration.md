@@ -63,6 +63,7 @@ Other framework components frequently use the config system to determine behavio
 The `Quantum\Loader\Setup` class acts as a descriptor for file loading.
 
 - **Module Defaulting**: When the `Setup` constructor is called without specifying a `module`, it implicitly defaults to `request()->getCurrentModule()`.
+  *Note:* In CLI or custom non-web contexts, this behavior may resolve configuration unexpectedly based on the current request state. For deterministic results, it is recommended to pass the `module` explicitly to the `Setup` constructor.
 
 ### Path Resolution Table
 
