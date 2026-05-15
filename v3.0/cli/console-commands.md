@@ -29,7 +29,7 @@ The core framework provides:
   - `core:key`
   - `install:toolkit`
   - `resource:clear`
-  - `openapi:generate`
+  - `install:openapi`
   - `cron:run`
   - `debugbar`
   - `version`
