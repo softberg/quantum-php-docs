@@ -189,6 +189,25 @@ Quantum supports both:
 If a route is closure-based, the dispatcher invokes the closure directly.
 If a route uses a controller, the dispatcher instantiates the controller and calls the action method.
 
+**Important**: Both closure handlers and controller actions must return an instance of `Quantum\Http\Response`. 
+
+The dispatcher enforces this contract via `requireResponse(...)` and will throw a runtime exception if the handler returns any other type.
+
+**Example:**
+
+```php
+// Valid
+$route->get('profile', function() {
+    return (new \Quantum\Http\Response())->html('...content...');
+});
+
+// Invalid (will throw an exception)
+$route->get('profile', function() {
+    return '...content...'; // String returned, not a Response object
+});
+```
+
+
 ## Controller lifecycle hooks
 
 The route dispatcher also supports controller lifecycle hooks:
