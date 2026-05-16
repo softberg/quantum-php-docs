@@ -22,7 +22,8 @@ The `Config` class manages this process and the in-memory data structure.
 ## API Methods
 
 - `load(Setup $setup)`: Load all configuration files.
-- `import(Setup $setup)`: Import additional config files.
+- `import(Setup $setup)`: Import additional config files. 
+  - *Note:* The `filename` defined in the `Setup` object is used as the top-level key for the imported data. If the filename is empty (`null` or `""`), the data will be merged at the root level; ensure unique top-level keys to prevent accidental overwriting of existing project configs.
 - `get(string $key, $default = null)`: Retrieve a config value.
 - `has(string $key)`: Check if config key exists.
 - `set(string $key, $value)`: Set or overwrite config value.
@@ -56,7 +57,18 @@ Other framework components frequently use the config system to determine behavio
 - Organize config files per module for maintainability.
 - Use environment overrides to separate dev, staging, and production configurations.
 - Avoid hardcoding values in code; prefer config injection.
+- When using `import()`, always provide a unique filename in `Setup` to avoid accidental merging of configurations at the root level.
 
+```php
+// Guardrail example for safe import
+$setup = new Setup('path/to/config', 'filename');
+
+if ($setup->getFilename()) {
+    config()->import($setup);
+} else {
+    // Handle error or log warning
+}
+```
 
 ## Config Setup
 
