@@ -30,13 +30,14 @@ So instead of thinking only in terms of one global controller folder and one glo
 
 From the upstream source, modules are not just a convenience pattern. They are built into the application startup flow.
 
-The framework's module loader:
+## The Module Loading Process
 
-- reads module configuration
-- determines which modules are enabled
-- loads module dependencies
-- loads module route definitions
-- passes those route closures into the route builder
+The framework's module loader manages application startup in two distinct phases:
+
+1.  **Dependency Registration**: During initialization, the loader scans all modules listed in `shared/config/modules.php`. It automatically loads all module dependencies defined in `modules/<ModuleName>/config/dependencies.php`, **regardless of whether the module is enabled**.
+    *   *Caution*: Because dependencies are loaded before the enabled check, if a disabled module contains service definitions in its `dependencies.php`, these services will still be registered in the DI container and may impact application behavior.
+
+2.  **Route Loading**: After dependencies are registered, the loader selectively loads route definitions from `modules/<ModuleName>/routes/routes.php`, but **only for modules explicitly marked as enabled** in the module configuration.
 
 That means modules participate directly in how the application boots and how routes become available.
 
