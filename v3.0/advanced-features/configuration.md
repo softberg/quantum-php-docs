@@ -23,7 +23,7 @@ The `Config` class manages this process and the in-memory data structure.
 
 - `load(Setup $setup)`: Load all configuration files.
 - `import(Setup $setup)`: Import additional config files. 
-  - *Note:* The `filename` defined in the `Setup` object is used as the top-level key for the imported data. If the filename is empty (`null` or `""`), the data is still stored under that empty filename as a key (e.g., `['' => $data]`), which does not merge at the root level and can lead to unexpected empty-string namespacing. Providing a unique, non-empty filename is highly recommended to avoid collision and access ambiguity.
+  - *Note:* The `filename` defined in the `Setup` object is strictly used as the top-level key for the imported data. `Config::import()` always structures imported data as `[$fileName => $data]`. Empty or `null` filenames are not supported and will result in implicit namespacing under an empty or null key; always provide a unique, non-empty filename to ensure proper access and collision detection.
 - `get(string $key, $default = null)`: Retrieve a config value.
 - `has(string $key)`: Check if config key exists.
 - `set(string $key, $value)`: Set or overwrite config value.
