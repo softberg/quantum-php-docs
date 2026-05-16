@@ -23,9 +23,21 @@ The framework supports raw parsing for `multipart/form-data` requests.
 
 Uploaded files are handled through the `setUploadedFiles` method, which follows this merge baseline:
 
-1. **`$_FILES` Normalization**: PHP's native `$_FILES` global is processed and normalized first.
+1. **`$_FILES` Normalization**: PHP's native `$_FILES` global is processed.
+   *   *Note*: The current normalization routine `handleFiles()` processes only the **first** top-level key defined in `$_FILES`. Sibling upload fields will be ignored at this step.
 2. **Multipart Raw Files**: Files extracted during raw multipart parsing are merged into the collection.
 3. **Merge Result**: The resulting files collection contains all uploaded files, with multipart raw-parsed files potentially overwriting existing keys from the normalized `$_FILES` array.
+
+**Warning Example:**
+
+If your HTML form contains two sibling upload fields:
+
+```html
+<input type="file" name="avatar">
+<input type="file" name="document">
+```
+
+Only the first field (`avatar`) will be included in the Request object via the `$_FILES` normalization process.
 
 See the [Advanced Request Lifecycle](../advanced-features/request-lifecycle.md) for further technical details on the parsing contract.
 
