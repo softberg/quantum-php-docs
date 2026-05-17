@@ -30,7 +30,7 @@ The core framework provides:
   - `install:toolkit`
   - `resource:clear`
   - `install:openapi`
-  - `cron:run`
+  - `cron:run` (See [Cron Scheduling](#cron-scheduling))
   - `debugbar`
   - `version`
 
@@ -264,6 +264,31 @@ A useful way to look at it is:
 - `CliCommand` is the base shape for framework-style console commands
 
 Once that clicks, the console side of Quantum becomes much easier to extend.
+
+## Cron Scheduling
+
+The framework provides an integrated scheduler for automating recurring tasks.
+
+### Task Authoring
+
+Tasks are defined as PHP files or classes that return a task configuration. A module's cron task is typically defined by returning an array or a class implementing `CronTaskInterface`:
+
+- **Array Structure**: `['name' => '...', 'expression' => '* * * * *', 'callback' => ...]`.
+- **Expression**: Uses standard crontab-like syntax.
+- **Callback**: A callable function or service method to execute.
+
+### Execution Semantics
+
+When `cron:run` is invoked, the `CronManager`:
+
+1.  **Dependency Loading**: Builds the schedule from registered modules.
+2.  **Locking Mechanism**: Utilizes `CronLock` to ensure task exclusivity.
+    *   **Acquire/Release**: Prevents concurrent execution of the same task.
+    *   **Stale Cleanup**: Automatically cleans up abandoned lock files.
+3.  **Run Statistics**: Tracks execution state to avoid re-runs within active windows.
+4.  **Bypass**: Use `--force` with `cron:run` to bypass existing locks and force execution.
+
+*Note: The scheduler requires a system-level crontab entry to trigger `php qt cron:run` periodically.*
 
 ## Suggested next reading
 
