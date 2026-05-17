@@ -271,9 +271,9 @@ The framework provides an integrated scheduler for automating recurring tasks.
 
 ### Task Authoring
 
-Tasks are defined as PHP files or classes that return a task configuration. A module's cron task is typically defined by returning an array or a class implementing `CronTaskInterface`:
+Tasks are discovered by scanning PHP files within the configured `cron.path` directory (defaulting to `base_dir()/cron`). Each file must return an object implementing `CronTaskInterface` or an array with the following structure:
 
-- **Array Structure**: `['name' => '...', 'expression' => '* * * * *', 'callback' => ...]`.
+- **Structure**: `['name' => '...', 'expression' => '* * * * *', 'callback' => ...]`
 - **Expression**: Uses standard crontab-like syntax.
 - **Callback**: A callable function or service method to execute.
 
@@ -281,12 +281,11 @@ Tasks are defined as PHP files or classes that return a task configuration. A mo
 
 When `cron:run` is invoked, the `CronManager`:
 
-1.  **Dependency Loading**: Builds the schedule from registered modules.
-2.  **Locking Mechanism**: Utilizes `CronLock` to ensure task exclusivity.
+1.  **Task Discovery**: Scans the configured cron directory for task files.
+2.  **Locking Mechanism**: Utilizes `CronLock` to manage task exclusivity.
     *   **Acquire/Release**: Prevents concurrent execution of the same task.
-    *   **Stale Cleanup**: Automatically cleans up abandoned lock files.
-3.  **Run Statistics**: Tracks execution state to avoid re-runs within active windows.
-4.  **Bypass**: Use `--force` with `cron:run` to bypass existing locks and force execution.
+3.  **Run Statistics**: Returns an array of execution statistics including `total`, `executed`, `skipped`, `failed`, and `locked` task counts.
+4.  **Bypass**: Use `--force` with `cron:run` to bypass lock acquisition and release.
 
 *Note: The scheduler requires a system-level crontab entry to trigger `php qt cron:run` periodically.*
 
