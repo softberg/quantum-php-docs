@@ -31,7 +31,7 @@ Usage:
 $args = Di::autowire($callable, $inputArgs);
 $callable(...$args);
 ```
-- `Di::set(string $abstract, object $instance)`: Manually set an instance.
+- `Di::set(string $abstract, object $instance, bool $override = true)`: Manually set an instance, optionally preventing an override of existing registered instances by setting `$override` to `false`. If the dependency is already registered and `override` is `false`, the method throws an exception.
 
 ## Usage Example
 
