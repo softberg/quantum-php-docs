@@ -29,6 +29,8 @@ $status = AppFactory::create(AppType::CONSOLE, __DIR__)->start();
 
 That tells Quantum to boot as a console app instead of as a web app.
 
+**Important Note on App Instances**: `AppFactory::create()` caches the application instance per `type` in memory (e.g., `AppType::CONSOLE`). Repeated calls to `create()` with the same type will return the first initialized instance, even if a different `baseDir` is provided. If you need to re-initialize an application with a different directory in the same process, you must call `AppFactory::destroy($type)` explicitly before recreating it.
+
 ## What happens when `qt` runs
 
 From the upstream console boot flow, this is the basic sequence.
