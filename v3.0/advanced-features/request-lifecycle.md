@@ -15,13 +15,15 @@ The request lifecycle is that connection.
 
 A simple view of the flow looks like this:
 
-1. a request enters the application
-2. Quantum boots the required framework pieces
-3. the router matches the request
-4. route middleware runs
-5. the controller action is dispatched
-6. the response is prepared
-7. output is returned to the client
+1. a request enters the application.
+2. Quantum boots the required framework pieces.
+3. The system checks the request method; `OPTIONS` requests short-circuit to a `204 No Content` response.
+4. The router matches the request (or returns a `404`).
+5. Route middleware runs.
+6. The framework checks the view cache for a response; if hit, the response is served, skipping controller dispatch.
+7. If no cache exists, the controller action is dispatched.
+8. The response is prepared.
+9. Output is returned to the client.
 
 ### The Bootstrapping Pipeline
 
@@ -47,40 +49,27 @@ At this stage, Quantum needs to:
 - load configuration
 - bootstrap the framework services needed for the request
 - prepare request and response objects
-- initialize the routing flow
 
-You can think of this as the framework preparing the execution environment.
+Before routing occurs, the `WebAppAdapter` checks the request method. If it is `OPTIONS`, the framework returns a `204 No Content` response immediately, bypassing all further processing.
 
 ## 2. The router tries to match the request
 
 Once the application is ready, Quantum checks the request against the registered routes.
 
-The router is responsible for figuring out:
+If no route matches, the request ends in a not found response. If a route matches, the framework loads language definitions, logs debug information, and initiates the view caching component.
 
-- which route matches the URL
-- which HTTP method is allowed
-- which controller and action should handle the request
-- which middleware is attached
+## 3. The matched route and conditional dispatch
 
-If no route matches, the request usually ends in a not found response.
+The framework proceeds to middleware execution. The terminal closure of this process defines how the response is generated:
 
-## 3. The matched route carries metadata
+1. It attempts to serve the response from the view cache using the request URI.
+2. If the cache is missed (unsupported for the URI, expired, or absent), it uses the `RouteDispatcher` to dispatch the matched controller action.
 
-A matched route is more than just a URL pattern.
-
-It also carries information such as:
-
-- controller name
-- action name
-- route parameters
-- route name
-- middleware definitions
-
-That metadata becomes the instruction set for the next steps.
+This ensures that controller logic runs only when necessary, providing a performance optimization layer.
 
 ## 4. Middleware runs before the controller action
 
-If middleware is attached to the route, Quantum runs it before calling the controller action.
+If middleware is attached to the route, Quantum runs it before the terminal closure above is invoked.
 
 Middleware can:
 
@@ -94,10 +83,11 @@ This is why middleware belongs in the core flow of the framework.
 
 A request does not always go directly from route to controller.
 Sometimes middleware stops it first.
+If the response is served from the view cache, controller action dispatch is entirely skipped.
 
 ## 5. The controller action is dispatched
 
-If middleware allows the request to continue, Quantum dispatches the target controller action.
+If the view cache is missed and middleware allows the request to continue, Quantum dispatches the target controller action.
 
 At this point, the framework resolves the controller and calls the requested method.
 
@@ -110,7 +100,7 @@ Depending on the controller, this step may include:
 - loading data
 - choosing how to respond
 
-This is the point where framework structure meets application logic.
+This is the point where framework structure meets the application logic.
 
 ## 6. The controller prepares a response
 
