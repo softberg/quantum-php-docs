@@ -121,11 +121,19 @@ That means a Quantum web module is designed to support:
 
 ## Assets in the view layer
 
-The upstream web controller template registers assets when setting the layout.
+The upstream web controller template registers assets when setting the layout. That means view rendering and asset inclusion are intentionally connected.
 
-That means view rendering and asset inclusion are intentionally connected.
+### Asset manager contract
 
-In practice, the layout can then output registered assets with helper calls.
+The `AssetManager` performs deterministic asset management and output:
+
+- **Registration**: Assets are registered with an optional unique name. Attempting to register an asset with a name that already exists will throw an exception.
+- **Publish Order**: Assets are published in a deterministic order:
+    1. Explicitly prioritized assets (via `setPriorityAssets`) are rendered before regular assets.
+    2. Regular assets (via `setRegularAssets`) are rendered into the first available free slot.
+    3. Within those groups, assets are sorted by their defined type.
+- **Output Separation**: Use `assets('css')` or `assets('js')` within your layout to retrieve and render the relevant asset group.
+- **URL Prefixing**: All local asset paths are automatically prefixed with `/assets/` during output generation.
 
 So a Quantum page is not just HTML content, it can also pull in CSS and JavaScript through the structured rendering flow.
 
