@@ -57,17 +57,13 @@ Other framework components frequently use the config system to determine behavio
 - Organize config files per module for maintainability.
 - Use environment overrides to separate dev, staging, and production configurations.
 - Avoid hardcoding values in code; prefer config injection.
-- When using `import()`, always provide a unique filename in `Setup` to avoid accidental merging of configurations at the root level.
+- When using `import()`, always provide a unique, non-empty filename in `Setup` to ensure data is correctly accessible and to prevent naming collisions. `Config::import()` wraps the imported payload in the form `[$fileName => $data]`.
 
 ```php
 // Guardrail example for safe import
-$setup = new Setup('path/to/config', 'filename');
+$setup = new Setup('path/to/config', 'unique_filename');
 
-if ($setup->getFilename()) {
-    config()->import($setup);
-} else {
-    // Handle error or log warning
-}
+config()->import($setup);
 ```
 
 ## Config Setup
